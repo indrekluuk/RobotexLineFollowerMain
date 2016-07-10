@@ -1,0 +1,22 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#
+# OnOffDoubleSwitch
+#
+DEF OnOffDoubleSwitch SW 0 40 Y Y 1 F N
+F0 "SW" 400 -350 60 H V C CNN
+F1 "OnOffDoubleSwitch" -400 50 60 V V C CNN
+F2 "" 0 0 60 H V C CNN
+F3 "" 0 0 60 H V C CNN
+DRAW
+S -250 400 250 -400 0 1 0 N
+X SW1_NC 1 -200 600 200 D 50 50 1 1 O
+X SW1 2 0 600 200 D 50 50 1 1 I
+X SW1_NO 3 200 600 200 D 50 50 1 1 O
+X SW2_NC 4 -200 -600 200 U 50 50 1 1 O
+X SW2 5 0 -600 200 U 50 50 1 1 I
+X SW2_NO 6 200 -600 200 U 50 50 1 1 O
+ENDDRAW
+ENDDEF
+#
+#End Library
