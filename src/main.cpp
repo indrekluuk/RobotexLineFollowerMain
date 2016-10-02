@@ -14,35 +14,12 @@ void run() {
   Serial.begin(9600);
 
   Serial.println("START");
-  uint8_t data[2];
-  data[1] = 0;
 
 
   while(1) {
-    if (dataBufferReceiver.isDataRead()) {
-
-      for (int i=0; i<100; i++) {
-        asm volatile("nop");
-      }
-
-      data[0] = dataBufferReceiver.read();
-      if (data[0] & 0b10000000) {
-        Serial.println("--------");
-      }
-      Serial.println(data[0]);
-      //Serial.print(" ");
-      //Serial.println((char *)data);
-      //Serial.println((char *)data);
-
-      //if (data[0] & 0b10000000) {
-      //  data[0] = data[0] & 0b01111111;
-      //  Serial.println();
-      //}
-      //Serial.print((char *)data);
-      //delay(50);
+    if (dataBufferReceiver.readMessage()) {
+      Serial.println((char *)dataBufferReceiver.getMessageBuffer());
     }
-
-    //delay(11000);
   }
 }
 
