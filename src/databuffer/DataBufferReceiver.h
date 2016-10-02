@@ -61,9 +61,27 @@ bool DataBufferReceiver::isDataReady() {
 
 uint8_t DataBufferReceiver::getNextByte() {
   POP_FIFO_PORT = POP_FIFO_PORT | POP_FIFO_MASK; //digitalWrite(PIN_POP_FIFO, HIGH);
-  uint8_t byte = SPI.transfer(0);
+
+  //uint8_t byte = SPI.transfer(0);
+
+  SPDR = 0;
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+  asm volatile("nop");
+
   POP_FIFO_PORT = POP_FIFO_PORT & ~POP_FIFO_MASK; //digitalWrite(PIN_POP_FIFO, LOW);
-  return byte;
+  return SPDR;
 }
 
 
