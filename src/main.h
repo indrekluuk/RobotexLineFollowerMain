@@ -1,0 +1,10 @@
+//
+// Created by indrek on 20.09.2016.
+//
+
+#ifndef ROBOTEXLINEFOLLOWERMAIN_MAIN_H
+#define ROBOTEXLINEFOLLOWERMAIN_MAIN_H
+
+void run();
+
+#endif //ROBOTEXLINEFOLLOWERMAIN_MAIN_H

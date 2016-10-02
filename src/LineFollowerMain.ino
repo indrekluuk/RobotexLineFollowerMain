@@ -1,6 +1,6 @@
 
 
-//#include "main.h"
+#include "main.h"
 
 
 void setup() {
@@ -9,7 +9,7 @@ void setup() {
 
 
 void loop() {
-  //run();
+  run();
 }
 
 
