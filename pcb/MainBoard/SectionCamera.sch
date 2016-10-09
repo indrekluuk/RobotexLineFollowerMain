@@ -54,10 +54,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L arduino_mini U1
+L arduino_mini ARD1
 U 1 1 57F2268F
 P 2850 3950
-F 0 "U1" H 3350 3000 70  0000 C CNN
+F 0 "ARD1" H 3400 3000 70  0000 C CNN
 F 1 "arduino_mini" H 3600 2900 70  0000 C CNN
 F 2 "arduino:arduino_mini" H 2850 3900 60  0001 C CNN
 F 3 "" H 2850 3950 60  0000 C CNN
@@ -523,10 +523,10 @@ F 3 "" H 7750 950 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C_BULK_8
+L C C_3VBULK_1
 U 1 1 57F9F5D5
 P 3950 800
-F 0 "C_BULK_8" H 3975 900 50  0000 L CNN
+F 0 "C_3VBULK_1" H 3975 900 50  0000 L CNN
 F 1 "10-100uF" H 3975 700 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206_HandSoldering" H 3988 650 50  0001 C CNN
 F 3 "" H 3950 800 50  0000 C CNN
@@ -534,36 +534,14 @@ F 3 "" H 3950 800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C_BULK_9
+L C C_3VBULK_2
 U 1 1 57F9F695
 P 4550 800
-F 0 "C_BULK_9" H 4575 900 50  0000 L CNN
+F 0 "C_3VBULK_2" H 4575 900 50  0000 L CNN
 F 1 "10-100uF" H 4575 700 50  0000 L CNN
 F 2 "Capacitors_SMD:C_1206_HandSoldering" H 4588 650 50  0001 C CNN
 F 3 "" H 4550 800 50  0000 C CNN
 	1    4550 800 
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C_BULK_10
-U 1 1 57F9F805
-P 5100 800
-F 0 "C_BULK_10" H 5125 900 50  0000 L CNN
-F 1 "10-100uF" H 5125 700 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206_HandSoldering" H 5138 650 50  0001 C CNN
-F 3 "" H 5100 800 50  0000 C CNN
-	1    5100 800 
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C_BULK_11
-U 1 1 57F9F857
-P 5650 800
-F 0 "C_BULK_11" H 5675 900 50  0000 L CNN
-F 1 "10-100uF" H 5675 700 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206_HandSoldering" H 5688 650 50  0001 C CNN
-F 3 "" H 5650 800 50  0000 C CNN
-	1    5650 800 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -588,32 +566,8 @@ F 3 "" H 4550 950 50  0000 C CNN
 	1    4550 950 
 	1    0    0    -1  
 $EndComp
-$Comp
-L GND #PWR019
-U 1 1 57F9F924
-P 5100 950
-F 0 "#PWR019" H 5100 700 50  0001 C CNN
-F 1 "GND" H 5100 800 50  0000 C CNN
-F 2 "" H 5100 950 50  0000 C CNN
-F 3 "" H 5100 950 50  0000 C CNN
-	1    5100 950 
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR020
-U 1 1 57F9F96D
-P 5650 950
-F 0 "#PWR020" H 5650 700 50  0001 C CNN
-F 1 "GND" H 5650 800 50  0000 C CNN
-F 2 "" H 5650 950 50  0000 C CNN
-F 3 "" H 5650 950 50  0000 C CNN
-	1    5650 950 
-	1    0    0    -1  
-$EndComp
 Connection ~ 3950 650 
 Connection ~ 4550 650 
-Connection ~ 5100 650 
-Connection ~ 5650 650 
 Connection ~ 7750 650 
 Wire Wire Line
 	8200 650  8200 800 
