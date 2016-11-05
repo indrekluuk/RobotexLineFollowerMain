@@ -101,14 +101,12 @@ Wire Wire Line
 	5700 2750 6500 2750
 Wire Wire Line
 	5700 2850 6500 2850
-Text HLabel 6500 3050 2    60   Input ~ 0
+Text HLabel 6500 3350 2    60   Input ~ 0
 FIFO_DATA_READY
 Text HLabel 6500 3250 2    60   Output ~ 0
 FIFO_POP
 Text HLabel 6500 3150 2    60   Output ~ 0
 FIFO_ENABLE
-Wire Wire Line
-	5700 3050 6500 3050
 Wire Wire Line
 	5700 3150 6500 3150
 Wire Wire Line
@@ -135,6 +133,8 @@ NoConn ~ 4300 3800
 NoConn ~ 4300 3900
 NoConn ~ 5700 4000
 NoConn ~ 5700 3800
-NoConn ~ 5700 3350
 NoConn ~ 5700 2950
+Wire Wire Line
+	5700 3350 6500 3350
+NoConn ~ 5700 3050
 $EndSCHEMATC

@@ -2061,7 +2061,7 @@
     )
   )
 
-  (gr_text v1.0 (at 80.1624 105.6894) (layer F.SilkS)
+  (gr_text v1.1 (at 80.1624 105.6894) (layer F.SilkS)
     (effects (font (size 1.5 1.5) (thickness 0.3)))
   )
   (gr_text "- + S" (at 114.8461 102.3874) (layer F.SilkS)
