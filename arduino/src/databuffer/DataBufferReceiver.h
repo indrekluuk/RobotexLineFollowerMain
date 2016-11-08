@@ -19,8 +19,8 @@
 #define DATA_READY_MASK 0b10000000
 #define POP_FIFO_PORT PORTB
 #define POP_FIFO_MASK 0b00000001
-#define CLOCK_ENABLE_PORT PORTD
-#define CLOCK_ENABLE_MASK 0b00010000
+#define CLOCK_ENABLE_PORT PORTB
+#define CLOCK_ENABLE_MASK 0b00000010
 
 #define MESSAGE_BUFFER_LENGTH 16
 #define MESSAGE_START 0xF0
@@ -32,7 +32,7 @@ private:
 
     static const int PIN_DATA_READY = 7;
     static const int PIN_POP_FIFO = 8;
-    static const int PIN_CLOCK_ENABLE = 4;
+    static const int PIN_CLOCK_ENABLE = 9;
 
     static uint8_t messageBuffer[];
     static uint8_t messageIndex;
@@ -63,6 +63,7 @@ uint8_t DataBufferReceiver::getNextByte() {
   POP_FIFO_PORT = POP_FIFO_PORT | POP_FIFO_MASK; //digitalWrite(PIN_POP_FIFO, HIGH);
 
   //uint8_t byte = SPI.transfer(0);
+
 
   SPDR = 0;
   asm volatile("nop");

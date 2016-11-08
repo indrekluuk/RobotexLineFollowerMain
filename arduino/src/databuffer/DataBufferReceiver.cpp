@@ -13,10 +13,10 @@ uint8_t DataBufferReceiver::messageBuffer[MESSAGE_BUFFER_LENGTH + 1]; // + 1 for
 
 DataBufferReceiver::DataBufferReceiver() {
   SPI.begin();
-  SPI.setClockDivider(SPI_CLOCK_DIV2);
   pinMode(PIN_DATA_READY, INPUT);
   pinMode(PIN_POP_FIFO, OUTPUT);
   pinMode(PIN_CLOCK_ENABLE, OUTPUT);
+  SPI.setClockDivider(SPI_CLOCK_DIV2);
   digitalWrite(PIN_CLOCK_ENABLE, HIGH);
   digitalWrite(PIN_POP_FIFO, LOW);
 }
