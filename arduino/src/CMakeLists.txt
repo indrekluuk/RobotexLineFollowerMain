@@ -3,8 +3,8 @@ project(RobotexLineFollowerMain_src)
 
 
 
-#add_library(LiveOV7670_camera
-#        camera/base/CameraOV7670.cpp
-#        )
+add_library(LiveOV7670_line
+        line/Line.cpp
+        )
 
 

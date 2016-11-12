@@ -3,12 +3,13 @@
 //
 
 #include "databuffer/DataBufferReceiver.h"
+#include "line/Line.h"
 #include <Arduino.h>
 #include <Servo.h>
 
 
 DataBufferReceiver dataBufferReceiver;
-
+Line line;
 
 int PIN_FRONT_WHEELS = 3;
 int PIN_FORWARD = 6;
@@ -20,8 +21,8 @@ Servo frontWheels;
 
 
 
-int getSteeringDirection(int right, int left);
-int getSteering(uint8_t line);
+int getSteering(int8_t line);
+
 
 
 void run() {
@@ -44,38 +45,31 @@ void run() {
 
   //digitalWrite(PIN_FORWARD, HIGH);
   //analogWrite(PIN_FORWARD, 70);
+  //frontWheels.write(45);
 
   int startCounter = 0;
   while(1) {
     uint8_t length = dataBufferReceiver.readMessage();
-    if (length) {
+    if (length == 3 && dataBufferReceiver.getMessageBuffer()[0] == 30) {
 
       startCounter++;
       if (startCounter == 50) {
-        analogWrite(PIN_FORWARD, 70);
+        analogWrite(PIN_FORWARD, 100);
       }
+
+      int8_t linePos = line.getLine(
+          dataBufferReceiver.getMessageBuffer()[0],
+          dataBufferReceiver.getMessageBuffer()[1],
+          dataBufferReceiver.getMessageBuffer()[2]);
+
+      frontWheels.write(getSteering(linePos));
 
       for (uint8_t i=0; i<length; i++) {
         Serial.print(dataBufferReceiver.getMessageBuffer()[i]);
-        Serial.print("_");
+        Serial.print("___");
       }
+      Serial.print((int)linePos);
       Serial.println("n");
-
-
-
-
-      uint16_t line = dataBufferReceiver.getMessageBuffer()[0];
-      if (line < 80) {
-        if (line <20) {
-          targetSteering += 40 - line - 20;
-          if (targetSteering > 150) targetSteering = 150;
-        }
-        if (line >= 60) {
-          targetSteering -= line - 40 - 20;
-          if (targetSteering < 45) targetSteering = 45;
-        }
-      }
-      frontWheels.write(getSteering(line));
     }
 
     if (currentSteering > targetSteering) currentSteering--;
@@ -115,10 +109,17 @@ void run() {
 }
 
 
-int getSteering(uint8_t line) {
+
+int8_t steeringLinePos = 0;
+
+int getSteering(int8_t linePos) {
   //70 .. 140
-  if (line < 80) {
-    int steering = map((int)line, 0, 80, 155, 40);
+  if (abs(linePos) <= line.getLineRange()) {
+    if (abs(linePos - steeringLinePos) > 2) {
+      steeringLinePos = linePos;
+    }
+
+    int steering = map((int)steeringLinePos, -line.getLineRange(), line.getLineRange(), 150, 45); // 155, 40
     if (steering < 45) steering = 45;
     if (steering > 150) steering = 150;
     return steering;
