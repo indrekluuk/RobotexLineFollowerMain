@@ -30,7 +30,7 @@ int getSteering(int8_t line);
 
 void run() {
 
-  Serial.begin(9600);
+  Serial.begin(250000);
 
   pinMode(PIN_FORWARD, OUTPUT);
   pinMode(PIN_REVERSE, OUTPUT);
@@ -40,6 +40,7 @@ void run() {
   frontWheels.attach(PIN_FRONT_WHEELS);
 
   Serial.println("START");
+  bool newFrame = true;
 
   while(1) {
     if (millis() > 5000) {
@@ -53,16 +54,37 @@ void run() {
           dataBufferReceiver.getMessageBuffer()[1],
           dataBufferReceiver.getMessageBuffer()[2]);
 
-      if (line.isLineFound()) {
+      Serial.println((int)(dataBufferReceiver.getMessageBuffer()[0]));
+
+      if (dataBufferReceiver.getMessageBuffer()[0] == 0) {
+        newFrame = true;
+      }
+
+/*
+      if (dataBufferReceiver.getMessageBuffer()[0] == 30) {
+        Serial.print((int)dataBufferReceiver.getMessageBuffer()[1]);
+        Serial.print("_");
+        Serial.print((int)dataBufferReceiver.getMessageBuffer()[2]);
+        Serial.println();
+      }
+*/
+
+
+      if (line.isLineFound() && newFrame) {
+        newFrame = false;
         int8_t linePos = line.getLinePosition();
-        int8_t rowIndex = line.getLineEndRow();
+        int8_t rowStart = line.getLineStartRow();
+        int8_t rowEnd = line.getLineEndRow();
         //frontWheels.write(getSteering(linePos));
 
         Serial.print((int)linePos);
         Serial.print("_");
-        Serial.print((int)rowIndex);
-        Serial.println("n");
+        Serial.print((int)rowStart);
+        Serial.print("_");
+        Serial.print((int)rowEnd);
+        Serial.println("");
       }
+
     }
   }
 }

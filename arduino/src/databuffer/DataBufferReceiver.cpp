@@ -36,6 +36,7 @@ uint8_t DataBufferReceiver::readByte() {
 uint8_t DataBufferReceiver::readMessage() {
 
   if (isDataReady()) {
+    noInterrupts();
     CLOCK_ENABLE_PORT = CLOCK_ENABLE_PORT & ~CLOCK_ENABLE_MASK; //digitalWrite(PIN_CLOCK_ENABLE, LOW);
 
     do {
@@ -51,7 +52,7 @@ uint8_t DataBufferReceiver::readMessage() {
 
     CLOCK_ENABLE_PORT = CLOCK_ENABLE_PORT | CLOCK_ENABLE_MASK; //digitalWrite(PIN_CLOCK_ENABLE, HIGH);
   }
-
+  interrupts();
   if (messageIndex == messageLength) {
     messageBuffer[messageLength] = 0;
     messageIndex = 0;

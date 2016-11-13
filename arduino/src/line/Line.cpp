@@ -23,6 +23,9 @@ int8_t Line::getRowCount() {
 void Line::setRowBitmap(uint8_t rowIndex, uint8_t bitmapHigh, uint8_t bitmapLow) {
   if (rowIndex == 0) {
     resetLine();
+    // ignore data on first line
+    bitmapHigh = 0;
+    bitmapLow = 0;
   }
 
   if (rowIndex < rowCount) {
