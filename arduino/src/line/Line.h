@@ -36,6 +36,8 @@ public:
 
     bool isLineFound();
     int8_t getLinePosition();
+    int8_t getLineStartRow();
+    int8_t getLineEndRow();
 
 
 private:

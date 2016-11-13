@@ -113,9 +113,17 @@ int8_t Line::getLinePosition() {
   } else {
     return 0;
   }
-
 }
 
+
+int8_t Line::getLineStartRow() {
+  return lineStartRow;
+}
+
+
+int8_t Line::getLineEndRow() {
+  return lineEndRow;
+}
 
 
 

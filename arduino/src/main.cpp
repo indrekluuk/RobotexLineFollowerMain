@@ -55,13 +55,12 @@ void run() {
 
       if (line.isLineFound()) {
         int8_t linePos = line.getLinePosition();
-        frontWheels.write(getSteering(linePos));
+        int8_t rowIndex = line.getLineEndRow();
+        //frontWheels.write(getSteering(linePos));
 
-        for (uint8_t i=0; i<length; i++) {
-          Serial.print(dataBufferReceiver.getMessageBuffer()[i]);
-          Serial.print("___");
-        }
         Serial.print((int)linePos);
+        Serial.print("_");
+        Serial.print((int)rowIndex);
         Serial.println("n");
       }
     }
