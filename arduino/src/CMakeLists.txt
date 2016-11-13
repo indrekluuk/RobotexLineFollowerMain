@@ -5,6 +5,7 @@ project(RobotexLineFollowerMain_src)
 
 add_library(LiveOV7670_line
         line/Line.cpp
+        line/RowLinePosition.cpp
         )
 
 

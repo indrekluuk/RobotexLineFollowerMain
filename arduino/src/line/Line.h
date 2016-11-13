@@ -6,25 +6,31 @@
 #define ROBOTEXLINEFOLLOWERMAIN_LINE_H
 
 
+#include "RowLinePosition.h"
 #include <Arduino.h>
+
 
 
 
 class Line {
 
-    const int8_t lineRange = 13;
-    const int8_t lineNotFound = lineRange + 1;
+    static const int16_t rowCount = 120;
+
+    uint16_t lineBitmap[rowCount];
+    int16_t firstLine = -1;
+
+    bool lineFound = false;
+
 
 
 public:
     Line();
 
+    void setRowBitmap(uint8_t rowIndex, uint8_t bitmapHigh, uint8_t bitmapLow);
 
-    int8_t getLineRange();
-    int8_t getLineNotFound();
+    bool isLineFound();
+    int8_t getLinePosition();
 
-    int8_t getLine(uint8_t lineIndex, uint8_t bitmapHigh, uint8_t bitmapLow);
-    int8_t processLineSegment(int8_t currentLine, int8_t lineStart, int8_t lineEnd);
 
 
 };
