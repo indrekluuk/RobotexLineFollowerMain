@@ -10,6 +10,7 @@ add_subdirectory(fake)
 
 
 add_executable(runTests
+        src/line/LineTest.cpp
         src/line/RowLinePositionTest.cpp
         )
 
