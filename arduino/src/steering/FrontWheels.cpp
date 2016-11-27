@@ -8,7 +8,7 @@
 
 
 FrontWheels::FrontWheels() :
-    positionRange(0)
+    positionRange(1)
 {
 }
 
@@ -31,8 +31,8 @@ void FrontWheels::setPositionRange(int16_t range) {
 }
 
 
-void FrontWheels::set(int16_t position, int16_t rangeInPercentage) {
-  int steering = steeringToPosition(position, rangeInPercentage);
+void FrontWheels::set(int16_t position) {
+  int steering = positionToSteering(position);
   if (steering < steeringMin) steering = steeringMin;
   if (steering > steeringMax) steering = steeringMax;
   frontWheelsServo.write(steering);
@@ -40,8 +40,8 @@ void FrontWheels::set(int16_t position, int16_t rangeInPercentage) {
 
 
 
-int FrontWheels::steeringToPosition(int16_t position, int16_t rangeInPercentage) {
+int FrontWheels::positionToSteering(int16_t position) {
   int fullSteeringRange = position * (steeringRange) / (positionRange);
-  return fullSteeringRange*rangeInPercentage/100 + steeringCenter;
+  return fullSteeringRange + steeringCenter;
 }
 

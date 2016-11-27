@@ -31,6 +31,9 @@ void run() {
   frontWheels.init(PIN_FRONT_WHEELS);
 
 
+
+  steering.center();
+
   Serial.begin(250000);
   Serial.println("Waiting...");
   delay(5000);

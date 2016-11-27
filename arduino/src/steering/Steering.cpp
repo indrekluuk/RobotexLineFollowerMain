@@ -3,19 +3,29 @@
 //
 
 #include "Steering.h"
+#include "PositionToSteering.h"
 
 
 
 Steering::Steering(FrontWheels & frontWheels) :
     frontWheels(frontWheels)
 {
-  frontWheels.setPositionRange(rangeX);
+  frontWheels.setPositionRange(PositionToSteering::getSteeringRange());
+  currentSteering = 0;
+}
+
+
+void Steering::center() {
+  frontWheels.set(0);
+  currentSteering = 0;
 }
 
 
 void Steering::steer(const LineSegment & line) {
-  int16_t centeredX = line.x2 - centerX;
-  frontWheels.set(-centeredX, 30);
+  PositionToSteering toSteering(line);
+  int16_t newSteering = toSteering.getNewSteering(currentSteering);
+  frontWheels.set(-newSteering);
+  currentSteering = newSteering;
 }
 
 

@@ -32,14 +32,14 @@ public:
     const Servo & getServo();
 
     void setPositionRange(int16_t positionRange);
-    void set(int16_t position, int16_t rangeInPercentage);
+    void set(int16_t position);
 
     int16_t getSteeringMin() {return steeringMin; };
     int16_t getSteeringMax() {return steeringMax; };
     int16_t getSteeringCenter() {return steeringCenter; };
 
 private:
-    int steeringToPosition(int16_t position, int16_t rangeInPercentage);
+    int positionToSteering(int16_t position);
 
 };
 
