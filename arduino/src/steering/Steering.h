@@ -1,27 +1,23 @@
 //
-// Created by indrek on 26.11.2016.
+// Created by indrek on 27.11.2016.
 //
 
 #ifndef ROBOTEXLINEFOLLOWERMAIN_STEERING_H
 #define ROBOTEXLINEFOLLOWERMAIN_STEERING_H
 
-
-#include <Servo.h>
-
-
+#include "FrontWheels.h"
+#include "../cameramessages/LineSegment.h"
 
 
 class Steering {
 
-    static const int steeringMin = 45;
-    static const int steeringMax = 150;
-
-
-    Servo steeringServo;
+    FrontWheels &frontWheels;
 
 
 public:
-    Steering(int steeringPin);
+    Steering(FrontWheels & frontWheels);
+
+    void steer(const LineSegment & line);
 
 };
 

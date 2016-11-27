@@ -7,32 +7,22 @@
 
 
 #include "DataBufferReceiver.h"
-
-
-
-struct LineSegment {
-    uint8_t x1;
-    uint8_t y1;
-    uint8_t x2;
-    uint8_t y2;
-    LineSegment(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2)
-        : x1(x1), y1(y1), x2(x2), y2(y2) {}
-};
+#include "LineSegment.h"
 
 
 
 
 class Message {
-    using FnLineSegmentCallback = void (*)(const LineSegment & line);
+    using FnLineSegmentCallback = void(const LineSegment & line);
 
 
     const static uint8_t COMMAND_LINE_SEGMENT = 0x10;
     DataBufferReceiver receiver;
 
-    FnLineSegmentCallback fnLineSegmentReceived;
+    FnLineSegmentCallback *fnLineSegmentReceived;
 
 public:
-    Message(FnLineSegmentCallback fnLineSegmentReceived);
+    Message(FnLineSegmentCallback *fnLineSegmentReceived);
 
     void waitForMessage();
 

@@ -4,6 +4,7 @@
 
 
 #include "engine/Engine.h"
+#include "steering/FrontWheels.h"
 #include "steering/Steering.h"
 #include "cameramessages/Message.h"
 
@@ -17,7 +18,8 @@ int PIN_FRONT_WHEELS = 3;
 
 
 Engine engine(PIN_FORWARD, PIN_REVERSE);
-Steering steering(PIN_FRONT_WHEELS);
+FrontWheels frontWheels;
+Steering steering(frontWheels);
 
 
 
@@ -26,6 +28,7 @@ void lineSegmentReceived(const LineSegment & line);
 
 
 void run() {
+  frontWheels.init(PIN_FRONT_WHEELS);
 
   Serial.begin(250000);
   Serial.println("Waiting...");
@@ -42,6 +45,8 @@ void run() {
 
 
 void lineSegmentReceived(const LineSegment & line) {
+  //steering.steer(line);
+
   Serial.print("x1=");
   Serial.print((int)line.x1);
 

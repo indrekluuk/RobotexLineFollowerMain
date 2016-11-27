@@ -8,7 +8,7 @@
 
 
 
-Message::Message(FnLineSegmentCallback fnLineSegmentReceived) :
+Message::Message(FnLineSegmentCallback *fnLineSegmentReceived) :
     fnLineSegmentReceived(fnLineSegmentReceived)
 {
 
