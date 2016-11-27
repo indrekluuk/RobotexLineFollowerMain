@@ -31,7 +31,7 @@ public:
     int16_t getNewSteering(int16_t currentSteering);
 
 private:
-    int16_t getSteeringDelta();
+    int16_t getSteeringDelta(int16_t currentSteering);
     int16_t getSteeringRangeForY(int16_t y);
 
 
