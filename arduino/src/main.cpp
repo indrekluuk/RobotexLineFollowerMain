@@ -45,7 +45,7 @@ void run() {
 
 
 void lineSegmentReceived(const LineSegment & line) {
-  //steering.steer(line);
+  steering.steer(line);
 
   Serial.print("x1=");
   Serial.print((int)line.x1);

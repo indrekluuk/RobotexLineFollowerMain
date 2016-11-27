@@ -11,6 +11,10 @@
 
 class Steering {
 
+
+    static const int16_t minX = 0;
+    static const int16_t maxX = 30;
+    static const int16_t centerX = minX + (maxX - minX) / 2;
     FrontWheels &frontWheels;
 
 

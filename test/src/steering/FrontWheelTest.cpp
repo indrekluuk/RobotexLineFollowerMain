@@ -10,8 +10,8 @@
 
 
 TEST(FrontWheelTest, testServoToCenter) {
-  FrontWheels frontWheels(0);
-  frontWheels.set(0);
+  FrontWheels frontWheels(10);
+  frontWheels.set(0, 100);
   int center = (frontWheels.steeringMax + frontWheels.steeringMin)/2;
   ASSERT_EQ(center, frontWheels.getServo().getWrittenPos());
 }
@@ -19,32 +19,32 @@ TEST(FrontWheelTest, testServoToCenter) {
 
 
 TEST(FrontWheelTest, testServoMin) {
-  FrontWheels frontWheels(0);
-  frontWheels.set(-100);
+  FrontWheels frontWheels(10);
+  frontWheels.set(-10, 100);
   ASSERT_EQ(frontWheels.steeringMin, frontWheels.getServo().getWrittenPos());
 }
 
 
 
 TEST(FrontWheelTest, testServoMax) {
-  FrontWheels frontWheels(0);
-  frontWheels.set(100);
+  FrontWheels frontWheels(10);
+  frontWheels.set(10, 100);
   ASSERT_EQ(frontWheels.steeringMax, frontWheels.getServo().getWrittenPos());
 }
 
 
 
 TEST(FrontWheelTest, testServoLessThanMin) {
-  FrontWheels frontWheels(0);
-  frontWheels.set(-150);
+  FrontWheels frontWheels(10);
+  frontWheels.set(-15, 100);
   ASSERT_EQ(frontWheels.steeringMin, frontWheels.getServo().getWrittenPos());
 }
 
 
 
 TEST(FrontWheelTest, testServoMoreThanMax) {
-  FrontWheels frontWheels(0);
-  frontWheels.set(150);
+  FrontWheels frontWheels(10);
+  frontWheels.set(15, 100);
   ASSERT_EQ(frontWheels.steeringMax, frontWheels.getServo().getWrittenPos());
 }
 
@@ -52,8 +52,8 @@ TEST(FrontWheelTest, testServoMoreThanMax) {
 
 
 TEST(FrontWheelTest, testServoMidWayToMin) {
-  FrontWheels frontWheels(0);
-  frontWheels.set(-50);
+  FrontWheels frontWheels(10);
+  frontWheels.set(-5, 100);
   int quarter = frontWheels.steeringMin + (frontWheels.steeringMax - frontWheels.steeringMin)/4;
   ASSERT_EQ(quarter, frontWheels.getServo().getWrittenPos());
 }
@@ -61,10 +61,23 @@ TEST(FrontWheelTest, testServoMidWayToMin) {
 
 
 TEST(FrontWheelTest, testServoMidWayToMax) {
-  FrontWheels frontWheels(0);
-  frontWheels.set(50);
+  FrontWheels frontWheels(10);
+  frontWheels.set(5, 100);
   int quarter = frontWheels.steeringMin + 3*(frontWheels.steeringMax - frontWheels.steeringMin)/4;
   ASSERT_EQ(quarter, frontWheels.getServo().getWrittenPos());
 }
+
+
+
+
+
+TEST(FrontWheelTest, testLimitedRange1) {
+  FrontWheels frontWheels(10);
+  frontWheels.set(10, 50);
+  int quarter = frontWheels.steeringMin + 3*(frontWheels.steeringMax - frontWheels.steeringMin)/4;
+  ASSERT_EQ(quarter, frontWheels.getServo().getWrittenPos());
+}
+
+
 
 
