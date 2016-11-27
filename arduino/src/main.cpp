@@ -18,7 +18,8 @@ int PIN_FRONT_WHEELS = 3;
 
 
 Engine engine(PIN_FORWARD, PIN_REVERSE);
-Steering steering;
+FrontWheels frontWheels;
+Steering steering(frontWheels);
 
 
 
@@ -27,7 +28,7 @@ void lineSegmentReceived(const LineSegment & line);
 
 
 void run() {
-  steering.init(PIN_FRONT_WHEELS);
+  frontWheels.init(PIN_FRONT_WHEELS);
 
 
   Serial.begin(250000);

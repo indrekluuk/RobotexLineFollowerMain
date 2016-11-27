@@ -16,12 +16,11 @@ class Steering {
     static const int16_t maxX = 30;
     static const int16_t centerX = minX + (maxX - minX) / 2;
     static const int16_t rangeX = maxX - centerX;
-    FrontWheels frontWheels;
+    FrontWheels & frontWheels;
 
 
 public:
-    Steering();
-    void init(int frontWheelsPin);
+    Steering(FrontWheels & frontWheels);
 
     void steer(const LineSegment & line);
 

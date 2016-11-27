@@ -26,9 +26,12 @@ private:
 
 
 public:
+    FrontWheels();
     FrontWheels(int16_t positionRange);
     void init(int frontWheelsPin);
     const Servo & getServo();
+
+    void setPositionRange(int16_t positionRange);
     void set(int16_t position, int16_t rangeInPercentage);
 
     int16_t getSteeringMin() {return steeringMin; };

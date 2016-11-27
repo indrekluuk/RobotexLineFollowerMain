@@ -6,20 +6,16 @@
 
 
 
-Steering::Steering() :
-    frontWheels(rangeX)
+Steering::Steering(FrontWheels & frontWheels) :
+    frontWheels(frontWheels)
 {
-}
-
-
-void Steering::init(int frontWheelsPin) {
-  frontWheels.init(frontWheelsPin);
+  frontWheels.setPositionRange(rangeX);
 }
 
 
 void Steering::steer(const LineSegment & line) {
   int16_t centeredX = line.x2 - centerX;
-  frontWheels.set(centeredX, 10);
+  frontWheels.set(-centeredX, 30);
 }
 
 
