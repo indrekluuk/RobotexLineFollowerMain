@@ -9,6 +9,7 @@
 uint8_t DataBufferReceiver::messageIndex = 0;
 uint8_t DataBufferReceiver::messageLength = 0;
 uint8_t DataBufferReceiver::messageBuffer[MESSAGE_BUFFER_LENGTH + 1]; // + 1 for null terminated string
+uint8_t DataBufferReceiver::messageCommandCode = 0;
 
 
 DataBufferReceiver::DataBufferReceiver() {
@@ -43,7 +44,8 @@ uint8_t DataBufferReceiver::readMessage() {
       uint8_t byte = getNextByte();
       if (byte >= MESSAGE_START) {
         messageIndex = 0;
-        messageLength = byte & ~MESSAGE_START;
+        messageCommandCode = byte & MESSAGE_COMMAND_MASK;
+        messageLength = byte & MESSAGE_COUNT_MASK;
       } else if (messageIndex < MESSAGE_BUFFER_LENGTH) {
         messageBuffer[messageIndex] = byte;
         messageIndex++;

@@ -23,7 +23,11 @@
 #define CLOCK_ENABLE_MASK 0b00000010
 
 #define MESSAGE_BUFFER_LENGTH 16
-#define MESSAGE_START 0xF0
+#define MESSAGE_START 0x80
+#define MESSAGE_COMMAND_MASK 0x70
+#define MESSAGE_COUNT_MASK 0x0F
+
+
 
 
 class DataBufferReceiver {
@@ -37,6 +41,7 @@ private:
     static uint8_t messageBuffer[];
     static uint8_t messageIndex;
     static uint8_t messageLength;
+    static uint8_t messageCommandCode;
 
 public:
     DataBufferReceiver();
@@ -45,6 +50,8 @@ public:
     uint8_t readByte();
     uint8_t readMessage();
     uint8_t * getMessageBuffer() {return messageBuffer;};
+    uint8_t getReceivedMessageLength() {return messageLength;};
+    uint8_t getReceivedCommandCode() {return messageCommandCode;};
 
 
 private:
