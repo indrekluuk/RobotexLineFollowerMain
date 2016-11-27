@@ -24,6 +24,9 @@ void Engine::stop() {
 
 
 
+void Engine::drive(int power) {
+  analogWrite(forwardPin, power);
+}
 
 
 

@@ -31,7 +31,22 @@ int16_t PositionToSteering::getSteeringDelta() {
 
 
 int16_t PositionToSteering::getSteeringRangeForY(int16_t y) {
-  return 30; // todo
+  return 30;
+  /*
+  if (y < 24) {
+    return 100;
+  } else if (y < 30) {
+    return 95;
+  } else if (y < 47) {
+    return 90;
+  } else  if (y < 54) {
+    return 85;
+  } else if (y < 60) {
+    return 80;
+  } else {
+    return 75;
+  }
+   */
 }
 
 

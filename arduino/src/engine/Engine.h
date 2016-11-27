@@ -21,6 +21,7 @@ public:
 
 
     void stop();
+    void drive(int power);
 
 };
 

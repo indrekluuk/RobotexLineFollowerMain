@@ -9,6 +9,8 @@
 #include "cameramessages/Message.h"
 
 
+#define DISABLE_CONTROLS 0
+
 
 
 int PIN_FORWARD = 6;
@@ -24,13 +26,13 @@ Steering steering(frontWheels);
 
 
 void lineSegmentReceived(const LineSegment & line);
-
+void angleTest();
 
 
 void run() {
+#if DISABLE_CONTROLS == 0
   frontWheels.init(PIN_FRONT_WHEELS);
-
-
+  //angleTest();
 
   steering.center();
 
@@ -43,6 +45,28 @@ void run() {
   while(1) {
     message.waitForMessage();
   }
+#endif
+}
+
+
+void angleTest() {
+  /*
+  frontWheels.setPositionRange(100);
+
+  while(true) {
+    frontWheels.set(0);
+    delay(3000);
+    frontWheels.set(-100);
+    delay(3000);
+    frontWheels.set(-90);
+    delay(3000);
+    frontWheels.set(-80);
+    delay(3000);
+    frontWheels.set(-70);
+    delay(3000);
+  }
+
+  */
 }
 
 
@@ -64,6 +88,7 @@ void lineSegmentReceived(const LineSegment & line) {
   Serial.print((int)line.y2);
 
   Serial.println("\n");
+  engine.drive(70);
 }
 
 
