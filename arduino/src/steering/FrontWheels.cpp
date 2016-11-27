@@ -25,7 +25,7 @@ const Servo & FrontWheels::getServo() {
 
 
 void FrontWheels::set(int16_t position, int16_t rangeInPercentage) {
-  int steering = steeringToPosition(position, rangeInPercentage);
+  int steering = steeringToPosition(-position, rangeInPercentage);
   if (steering < steeringMin) steering = steeringMin;
   if (steering > steeringMax) steering = steeringMax;
   frontWheelsServo.write(steering);
