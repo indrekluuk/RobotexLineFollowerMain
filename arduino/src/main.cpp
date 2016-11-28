@@ -12,7 +12,7 @@
 // 0 - not disabled
 // 1 - disable all
 // 2 - disable engine only
-#define DISABLE_CONTROLS 0
+#define DISABLE_CONTROLS 1
 
 
 
@@ -95,7 +95,7 @@ void lineSegmentReceived(LineSegment & line) {
    */
 
 #if DISABLE_CONTROLS == 0
-  engine.drive(100);
+  engine.drive(70);
 #endif
 }
 
