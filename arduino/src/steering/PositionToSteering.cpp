@@ -46,7 +46,7 @@ int16_t PositionToSteering::getSteeringRangeForY(int16_t y) {
   } else {
     range = 75;
   }
-  return range >> 1;
+  return range * 0.3;
 }
 
 
