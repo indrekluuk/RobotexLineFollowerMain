@@ -24,10 +24,16 @@ int16_t PositionToSteering::getNewSteering(int16_t currentSteering) {
 
 
 int16_t PositionToSteering::getSteeringDelta(int16_t currentSteering) {
-  int16_t centeredX = line.x2 - centerX - (12*currentSteering/100);
+  int16_t centeredX = line.x2 + getLineCenter(currentSteering);
   int16_t range = getSteeringRangeForY(line.y2);
-  int delta = centeredX * (range) / (rangeX);
+  int delta = centeredX * (range) / (line.range);
   return delta;
+}
+
+
+int16_t PositionToSteering::getLineCenter(int16_t currentSteering) {
+  int16_t steeringCenter = 0;
+  return steeringCenter - (12*currentSteering/100);
 }
 
 
@@ -46,7 +52,7 @@ int16_t PositionToSteering::getSteeringRangeForY(int16_t y) {
   } else {
     range = 75;
   }
-  return range * 0.3;
+  return range * 0.7;
 }
 
 

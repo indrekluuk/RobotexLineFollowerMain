@@ -7,15 +7,10 @@
 
 
 #include "Arduino.h"
-#include "../cameramessages/LineSegment.h"
+#include "../data/LineSegment.h"
 
 
 class PositionToSteering {
-
-    static const int16_t minX = 0;
-    static const int16_t maxX = 30;
-    static const int16_t centerX = minX + (maxX - minX) / 2;
-    static const int16_t rangeX = maxX - centerX;
 
     static const int16_t fullSteeringRange = 100;
 
@@ -33,6 +28,7 @@ public:
 private:
     int16_t getSteeringDelta(int16_t currentSteering);
     int16_t getSteeringRangeForY(int16_t y);
+    int16_t getLineCenter(int16_t currentSteering);
 
 
 };

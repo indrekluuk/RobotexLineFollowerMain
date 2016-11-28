@@ -20,10 +20,12 @@ void Message::waitForMessage() {
   if (receiver.readMessage()) {
     if (isLineSegmentReceived()) {
       fnLineSegmentReceived(LineSegment(
-          receiver.getMessageBuffer()[1],
-          receiver.getMessageBuffer()[0],
-          receiver.getMessageBuffer()[3],
-          receiver.getMessageBuffer()[2]));
+          lineSegmentCenter,
+          ((int16_t)receiver.getMessageBuffer()[1])-lineSegmentCenter,
+          ((int16_t)receiver.getMessageBuffer()[0]),
+          ((int16_t)receiver.getMessageBuffer()[3])-lineSegmentCenter,
+          ((int16_t)receiver.getMessageBuffer()[2])
+      ));
     }
   }
 }

@@ -6,7 +6,7 @@
 #define ROBOTEXLINEFOLLOWERMAIN_STEERING_H
 
 #include "FrontWheels.h"
-#include "../cameramessages/LineSegment.h"
+#include "../data/LineSegment.h"
 
 
 class Steering {

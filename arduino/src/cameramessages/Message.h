@@ -7,7 +7,7 @@
 
 
 #include "DataBufferReceiver.h"
-#include "LineSegment.h"
+#include "../data/LineSegment.h"
 
 
 
@@ -17,6 +17,9 @@ class Message {
 
 
     const static uint8_t COMMAND_LINE_SEGMENT = 0x10;
+    const static int16_t lineSegmentMax = 30;
+    const static int16_t lineSegmentCenter = lineSegmentMax/2;
+
     DataBufferReceiver receiver;
 
     FnLineSegmentCallback *fnLineSegmentReceived;
