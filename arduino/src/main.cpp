@@ -9,7 +9,7 @@
 #include "cameramessages/Message.h"
 
 
-#define DISABLE_CONTROLS 0
+#define DISABLE_CONTROLS 1
 
 
 

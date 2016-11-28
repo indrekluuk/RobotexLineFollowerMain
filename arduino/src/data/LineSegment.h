@@ -25,6 +25,8 @@ struct LineSegment {
         y2(y2)
     {}
 
+    LineSegment() {};
+
 };
 
 
