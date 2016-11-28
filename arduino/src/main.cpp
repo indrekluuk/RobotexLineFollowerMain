@@ -12,7 +12,7 @@
 // 0 - not disabled
 // 1 - disable engine only
 // 2 - disable all
-#define DISABLE_CONTROLS 1
+#define DISABLE_CONTROLS 0
 
 
 

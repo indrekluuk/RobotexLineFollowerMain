@@ -17,6 +17,9 @@ ScreenToWorld::ScreenToWorld(LineSegment & lineOnScreen) :
   lineInWorld.y2 = getWorldY(lineOnScreen.y2);
 }
 
+ScreenToWorld::ScreenToWorld() {
+}
+
 
 int16_t ScreenToWorld::getWorldX(int16_t screenX, int16_t screenY) const {
   return (screenX * getRangeInWorldForScreenY(screenY)) / lineOnScreen.range;
@@ -34,6 +37,12 @@ int16_t ScreenToWorld::getRangeInWorldForScreenY(int16_t y) const {
   // To keep it symmetrical add 2 points every other line
   return lineOnScreen.range + (y >> 1);
 }
+
+
+bool ScreenToWorld::isOffTheLine() {
+  return lineOnScreen.y1 > 30;
+}
+
 
 
 

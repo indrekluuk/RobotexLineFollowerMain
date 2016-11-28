@@ -21,15 +21,15 @@ include_directories(arduino/src)
 include_directories(${gtest_SOURCE_DIR}/include)
 
 add_executable(runTests
-        arduino/src/steering/ScreenToWorldY.cpp
+        arduino/src/steering/world/ScreenToWorldY.cpp
         arduino/src/steering/FrontWheels.cpp
-        arduino/src/steering/ScreenToWorld.cpp
+        arduino/src/steering/world/ScreenToWorld.cpp
 
         test/fake/Arduino.cpp
         test/fake/Servo.cpp
 
         test/src/steering/FrontWheelTest.cpp
-        test/src/steering/ScreenToWorldTest.cpp
+        test/src/steering/world/ScreenToWorldTest.cpp
         )
 
 # link

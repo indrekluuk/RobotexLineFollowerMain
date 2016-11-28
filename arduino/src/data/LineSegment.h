@@ -25,7 +25,12 @@ struct LineSegment {
         y2(y2)
     {}
 
-    LineSegment() {};
+    LineSegment() :
+        range(0),
+        x1(0),
+        y1(0),
+        x2(0),
+        y2(0){};
 
 };
 
