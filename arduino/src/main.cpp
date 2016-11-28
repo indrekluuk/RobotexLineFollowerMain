@@ -10,8 +10,8 @@
 
 
 // 0 - not disabled
-// 1 - disable all
-// 2 - disable engine only
+// 1 - disable engine only
+// 2 - disable all
 #define DISABLE_CONTROLS 1
 
 
@@ -33,7 +33,7 @@ void angleTest();
 
 
 void run() {
-#if DISABLE_CONTROLS != 1
+#if DISABLE_CONTROLS != 2
   frontWheels.init(PIN_FRONT_WHEELS);
   //angleTest();
 

@@ -25,8 +25,18 @@ int16_t PositionToSteering::getNewSteering(int16_t currentSteering) {
 
 
 int16_t PositionToSteering::getSteeringDelta(int16_t currentSteering) {
-  /*
+  int16_t centeredX = line.lineOnScreen.x2 - (12*currentSteering/100);
+  int16_t range = getSteeringRangeForY(line.lineOnScreen.y2);
+  int delta = centeredX * (range) / (line.lineOnScreen.range);
+  return delta;
+}
 
+
+
+
+/*
+
+int16_t PositionToSteering::getSteeringDelta(int16_t currentSteering) {
   int16_t trackingWorldX = getTrackingWorldX()
                            - (50*currentSteering/100); // todo replace 50 with some calculation;
 
@@ -34,16 +44,9 @@ int16_t PositionToSteering::getSteeringDelta(int16_t currentSteering) {
   int16_t steeringRange = getSteeringRangeForY(trackingScreenY);
   int delta = trackingWorldX  * steeringRange / (rangeForWorldX);
   return delta;
-
-   */
-
-
-  int16_t rangeForWorldX = line.getRangeInWorldForScreenY(line.lineInWorld.y2);
-  int16_t trackingWorldX = line.lineInWorld.x2 - (rangeForWorldX*0.7*currentSteering/100);
-  int16_t steeringRange = getSteeringRangeForY(trackingScreenY);
-  int delta = trackingWorldX  * steeringRange / (rangeForWorldX);
-  return delta;
 }
+
+
 
 
 int16_t PositionToSteering::getTrackingWorldX() {
@@ -54,7 +57,9 @@ int16_t PositionToSteering::getTrackingWorldX() {
                            +line.lineInWorld.x1;
   return trackingWorldX;
 }
-
+*/
+ 
+ 
 
 int16_t PositionToSteering::getSteeringRangeForY(int16_t screenY) {
   /*
