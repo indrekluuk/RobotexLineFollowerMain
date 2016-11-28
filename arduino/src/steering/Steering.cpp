@@ -21,8 +21,9 @@ void Steering::center() {
 }
 
 
-void Steering::steer(const LineSegment & line) {
+void Steering::steer(LineSegment & line) {
   PositionToSteering toSteering(line);
+
   int16_t newSteering = toSteering.getNewSteering(currentSteering);
   if (abs(newSteering) < abs(currentSteering) || abs(newSteering - currentSteering) > 5) {
     frontWheels.set(-newSteering);

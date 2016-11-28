@@ -9,7 +9,10 @@
 #include "cameramessages/Message.h"
 
 
-#define DISABLE_CONTROLS 1
+// 0 - not disabled
+// 1 - disable all
+// 2 - disable engine only
+#define DISABLE_CONTROLS 0
 
 
 
@@ -25,12 +28,12 @@ Steering steering(frontWheels);
 
 
 
-void lineSegmentReceived(const LineSegment & line);
+void lineSegmentReceived(LineSegment & line);
 void angleTest();
 
 
 void run() {
-#if DISABLE_CONTROLS == 0
+#if DISABLE_CONTROLS != 1
   frontWheels.init(PIN_FRONT_WHEELS);
   //angleTest();
 
@@ -72,9 +75,10 @@ void angleTest() {
 
 
 
-void lineSegmentReceived(const LineSegment & line) {
+void lineSegmentReceived(LineSegment & line) {
   steering.steer(line);
 
+  /*
   Serial.print("x1=");
   Serial.print((int)line.x1);
 
@@ -88,7 +92,11 @@ void lineSegmentReceived(const LineSegment & line) {
   Serial.print((int)line.y2);
 
   Serial.println("\n");
-  engine.drive(70);
+   */
+
+#if DISABLE_CONTROLS == 0
+  engine.drive(100);
+#endif
 }
 
 

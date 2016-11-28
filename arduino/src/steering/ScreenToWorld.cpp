@@ -7,23 +7,26 @@
 
 
 
-ScreenToWorld::ScreenToWorld(const LineSegment & lineOnScreen) :
+ScreenToWorld::ScreenToWorld(LineSegment & lineOnScreen) :
     lineOnScreen(lineOnScreen)
 {
   lineInWorld.range = getRangeInWorldForScreenY(lineCount);
   lineInWorld.x1 = getWorldX(lineOnScreen.x1, lineOnScreen.y1);
-  lineInWorld.y1 = screenToWorldYTable[lineOnScreen.y1];
+  lineInWorld.y1 = getWorldY(lineOnScreen.y1);
   lineInWorld.x2 = getWorldX(lineOnScreen.x2, lineOnScreen.y2);
-  lineInWorld.y2 = screenToWorldYTable[lineOnScreen.y2];
+  lineInWorld.y2 = getWorldY(lineOnScreen.y2);
 }
 
 
-int16_t ScreenToWorld::getWorldX(int16_t screenX, int16_t screenY) {
+int16_t ScreenToWorld::getWorldX(int16_t screenX, int16_t screenY) const {
   return (screenX * getRangeInWorldForScreenY(screenY)) / lineOnScreen.range;
 }
 
+int16_t ScreenToWorld::getWorldY(int16_t screenY) const {
+  return screenToWorldYTable[screenY];
+}
 
-int16_t ScreenToWorld::getRangeInWorldForScreenY(int16_t y) {
+int16_t ScreenToWorld::getRangeInWorldForScreenY(int16_t y) const {
   // Real world difference between bottom and top screen edge is roughly 5 times.
   // Line range on screen is -15..15
   // Screen has 120 lines

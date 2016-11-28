@@ -8,17 +8,21 @@
 
 #include "Arduino.h"
 #include "../data/LineSegment.h"
+#include "ScreenToWorld.h"
 
 
 class PositionToSteering {
 
+    static const int16_t trackingScreenY = 90;
     static const int16_t fullSteeringRange = 100;
 
-    const LineSegment & line;
 
 
 public:
-    PositionToSteering(const LineSegment & line);
+
+    ScreenToWorld line;
+
+    PositionToSteering(LineSegment & lineOnScreen);
 
     static int16_t getSteeringRange() {return fullSteeringRange;};
 
@@ -27,8 +31,8 @@ public:
 
 private:
     int16_t getSteeringDelta(int16_t currentSteering);
-    int16_t getSteeringRangeForY(int16_t y);
-    int16_t getLineCenter(int16_t currentSteering);
+    int16_t getSteeringRangeForY(int16_t screenY);
+    int16_t getTrackingWorldX();
 
 
 };

@@ -19,13 +19,13 @@ Message::Message(FnLineSegmentCallback *fnLineSegmentReceived) :
 void Message::waitForMessage() {
   if (receiver.readMessage()) {
     if (isLineSegmentReceived()) {
-      fnLineSegmentReceived(LineSegment(
+      LineSegment lineSegment(
           lineSegmentCenter,
           ((int16_t)receiver.getMessageBuffer()[1])-lineSegmentCenter,
           ((int16_t)receiver.getMessageBuffer()[0]),
           ((int16_t)receiver.getMessageBuffer()[3])-lineSegmentCenter,
-          ((int16_t)receiver.getMessageBuffer()[2])
-      ));
+          ((int16_t)receiver.getMessageBuffer()[2]));
+      fnLineSegmentReceived(lineSegment);
     }
   }
 }

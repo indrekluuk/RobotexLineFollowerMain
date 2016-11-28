@@ -18,7 +18,7 @@ public:
     Steering(FrontWheels & frontWheels);
 
     void center();
-    void steer(const LineSegment & line);
+    void steer(LineSegment & line);
 
 };
 

@@ -13,7 +13,7 @@
 
 
 class Message {
-    using FnLineSegmentCallback = void(const LineSegment & line);
+    using FnLineSegmentCallback = void(LineSegment & line);
 
 
     const static uint8_t COMMAND_LINE_SEGMENT = 0x10;
