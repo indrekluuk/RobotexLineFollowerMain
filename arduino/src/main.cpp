@@ -95,7 +95,7 @@ void lineSegmentReceived(LineSegment & line) {
    */
 
 #if DISABLE_CONTROLS == 0
-  engine.drive(70);
+  engine.drive(80);
 #endif
 }
 

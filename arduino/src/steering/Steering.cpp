@@ -34,10 +34,10 @@ void Steering::steer(LineSegment & screenLine) {
 
 int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
   if (isOffLine(line)) {
-    if (previouslyProcessedLine.x2 > 0) {
+    if (previouslyProcessedLine.x1 > 0) {
       return fullSteeringRange;
     }
-    if (previouslyProcessedLine.x2 < 0) {
+    if (previouslyProcessedLine.x1 < 0) {
       return -fullSteeringRange;
     }
   }
