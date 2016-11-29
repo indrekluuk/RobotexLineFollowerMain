@@ -93,6 +93,13 @@ void lineSegmentReceived(LineSegment & line) {
   Serial.print("; y2=");
   Serial.print((int)line.y2);
 
+  Serial.print("is end ");
+  Serial.print(line.isEndOfLine);
+  Serial.print("; is sharp ");
+  Serial.print(line.isSharpTurn);
+  Serial.print("; direction ");
+  Serial.print(line.sharpTurnDirection);
+
   Serial.println("\n");
    */
 

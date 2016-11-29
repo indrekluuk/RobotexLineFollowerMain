@@ -27,7 +27,9 @@ void Message::waitForMessage() {
           buffer.lineBottomIndex,
           buffer.lineTopPosition - lineSegmentCenter,
           buffer.lineTopIndex,
-          buffer.isEndOfLine
+          buffer.isEndOfLine,
+          buffer.isSharpTurn,
+          buffer.sharpTurnDirection
       );
       fnLineSegmentReceived(lineSegment);
     }

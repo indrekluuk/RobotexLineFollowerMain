@@ -42,6 +42,10 @@ int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
     }
   }
 
+  if (line.isEndOfLine && line.y2 < 60 && line.isSharpTurn) {
+    return line.sharpTurnDirection ? fullSteeringRange : -fullSteeringRange;
+  }
+
   int16_t steeringDelta = getSteeringDelta(line, currentSteering);
   int16_t newSteering = currentSteering + steeringDelta;
 
