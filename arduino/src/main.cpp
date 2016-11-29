@@ -7,6 +7,7 @@
 #include "steering/FrontWheels.h"
 #include "steering/Steering.h"
 #include "cameramessages/Message.h"
+#include "cameramessages/messagebuffer/LineSegmentMessageBuffer.h"
 
 
 // 0 - not disabled
@@ -33,13 +34,14 @@ void angleTest();
 
 
 void run() {
+  Serial.begin(250000);
+
 #if DISABLE_CONTROLS != 2
   frontWheels.init(PIN_FRONT_WHEELS);
   //angleTest();
 
   steering.center();
 
-  Serial.begin(250000);
   Serial.println("Waiting...");
   delay(5000);
   Serial.println("Start");

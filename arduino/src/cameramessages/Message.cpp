@@ -3,6 +3,7 @@
 //
 
 #include "Message.h"
+#include "messagebuffer/LineSegmentMessageBuffer.h"
 
 
 
@@ -19,12 +20,13 @@ Message::Message(FnLineSegmentCallback *fnLineSegmentReceived) :
 void Message::waitForMessage() {
   if (receiver.readMessage()) {
     if (isLineSegmentReceived()) {
+      LineSegmentMessageBuffer &buffer = *((LineSegmentMessageBuffer*)receiver.getMessageBuffer());
       LineSegment lineSegment(
           lineSegmentCenter,
-          ((int16_t)receiver.getMessageBuffer()[1])-lineSegmentCenter,
-          ((int16_t)receiver.getMessageBuffer()[0]),
-          ((int16_t)receiver.getMessageBuffer()[3])-lineSegmentCenter,
-          ((int16_t)receiver.getMessageBuffer()[2]));
+          buffer.lineBottomPosition - lineSegmentCenter,
+          buffer.lineBottomIndex,
+          buffer.lineTopPosition - lineSegmentCenter,
+          buffer.lineTopIndex);
       fnLineSegmentReceived(lineSegment);
     }
   }
