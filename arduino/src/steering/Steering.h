@@ -19,13 +19,15 @@ class Steering {
     int16_t currentSteering;
     LineSegment previouslyProcessedLine;
 
+    bool isReverse;
+
 public:
     Steering(FrontWheels & frontWheels);
 
     static int16_t getSteeringRange() {return fullSteeringRange;};
 
     void center();
-    void steer(LineSegment & line);
+    bool steer(LineSegment & line);
 
 private:
     int16_t getNewSteering(LineSegment & line, int16_t currentSteering);

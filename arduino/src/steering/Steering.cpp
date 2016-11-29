@@ -11,6 +11,7 @@ Steering::Steering(FrontWheels & frontWheels) :
 {
   frontWheels.setPositionRange(fullSteeringRange);
   currentSteering = 0;
+  isReverse = false;
 }
 
 
@@ -20,31 +21,68 @@ void Steering::center() {
 }
 
 
-void Steering::steer(LineSegment & screenLine) {
 
+
+bool Steering::steer(LineSegment & screenLine) {
   int16_t newSteering = getNewSteering(screenLine, currentSteering);
   if (abs(newSteering) < abs(currentSteering) || abs(newSteering - currentSteering) > 5) {
     frontWheels.set(-newSteering);
     currentSteering = newSteering;
   }
+
+  return isReverse;
 }
 
 
 
 
+/*
+   if (line.isEndOfLine && !line.isSharpTurn &&
+      line.x1 > -15 && line.x1 < 15 && line.x2 > -15 && line.x2 < 15 ) {
+    if (line.y2 < 50) {
+      engine.reverse(power);
+    } else {
+      engine.drive(power);
+    }
+  } else {
+    engine.drive(power);
+  }
+ */
+
+
 int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
   if (isOffLine(line)) {
-    if (previouslyProcessedLine.x1 > 0) {
-      return fullSteeringRange;
+    /*
+    if (previouslyProcessedLine.isEndOfLine
+        && previouslyProcessedLine.x2 > -15 && previouslyProcessedLine.x2 < 15) {
+      isReverse = true;
+      return currentSteering;
+    } else {
+      if (previouslyProcessedLine.x1 > 0) {
+        return fullSteeringRange;
+      }
+      if (previouslyProcessedLine.x1 < 0) {
+        return -fullSteeringRange;
+      }
     }
-    if (previouslyProcessedLine.x1 < 0) {
-      return -fullSteeringRange;
+     */
+    if (!isReverse) {
+      currentSteering = -currentSteering / 2;
+      isReverse = true;
+    }
+    return currentSteering;
+  } else {
+    if (isReverse) {
+      currentSteering = -currentSteering;
+      isReverse = false;
     }
   }
 
-  if (line.isEndOfLine && line.y2 < 60 && line.isSharpTurn) {
+  /*
+  if (line.isEndOfLine && line.y1 < 30 && line.y2 < 50 && line.isSharpTurn) {
     return line.sharpTurnDirection ? fullSteeringRange : -fullSteeringRange;
   }
+   */
 
   int16_t steeringDelta = getSteeringDelta(line, currentSteering);
   int16_t newSteering = currentSteering + steeringDelta;
@@ -90,7 +128,7 @@ int16_t Steering::getSteeringRangeForY(int16_t screenY) {
 
 
 bool Steering::isOffLine(LineSegment & line) {
-  return line.y1 > 30;
+  return line.y1 > 40;
 }
 
 
