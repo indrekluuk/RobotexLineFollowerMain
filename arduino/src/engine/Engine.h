@@ -22,6 +22,7 @@ public:
 
     void stop();
     void drive(int power);
+    void reverse(int power);
 
 };
 

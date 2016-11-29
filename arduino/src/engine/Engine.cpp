@@ -25,9 +25,16 @@ void Engine::stop() {
 
 
 void Engine::drive(int power) {
+  digitalWrite(reversePin, LOW);
   analogWrite(forwardPin, power);
 }
 
+
+
+void Engine::reverse(int power) {
+  digitalWrite(forwardPin, LOW);
+  analogWrite(reversePin, power);
+}
 
 
 

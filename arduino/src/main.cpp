@@ -97,7 +97,20 @@ void lineSegmentReceived(LineSegment & line) {
    */
 
 #if DISABLE_CONTROLS == 0
-  engine.drive(80);
+  /*
+  if (line.isEndOfLine && line.x2 > -15 && line.x2 < 15) {
+    if (line.y2 < 50) {
+      engine.reverse(70);
+    } else if (line.y2 < 110) {
+      engine.stop();
+    } else {
+      engine.drive(80);
+    }
+  } else {
+    engine.drive(80);
+  }
+   */
+  engine.drive(75);
 #endif
 }
 
