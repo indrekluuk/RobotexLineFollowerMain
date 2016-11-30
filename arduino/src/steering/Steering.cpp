@@ -12,6 +12,8 @@ Steering::Steering(FrontWheels & frontWheels) :
   frontWheels.setPositionRange(fullSteeringRange);
   currentSteering = 0;
   isReverse = false;
+  forwardCount = 0;
+  reverseCount = 0;
 }
 
 
@@ -30,36 +32,36 @@ bool Steering::steer(LineSegment & screenLine) {
     currentSteering = newSteering;
   }
 
+  if (isReverse) {
+    reverseCount ++;
+  } else {
+    forwardCount ++;
+  }
+
   return isReverse;
 }
 
 
 
 int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
+
   if (isOffLine(line)) {
-    /*
-    if (previouslyProcessedLine.isEndOfLine
-        && previouslyProcessedLine.x2 > -15 && previouslyProcessedLine.x2 < 15) {
-      isReverse = true;
-      return currentSteering;
-    } else {
-      if (previouslyProcessedLine.x1 > 0) {
-        return fullSteeringRange;
-      }
-      if (previouslyProcessedLine.x1 < 0) {
-        return -fullSteeringRange;
-      }
-    }
-     */
     int16_t reverseSteering = currentSteering;
     if (!isReverse) {
-      reverseSteering = -reverseSteering / 2;
+      if (reverseCount * 2 > forwardCount) {
+        reverseSteering = steeringWhenStuck;
+        steeringWhenStuck *= -1;
+      } else {
+        reverseSteering = -reverseSteering / 2;
+      }
       isReverse = true;
+      reverseCount = 0;
     }
     return reverseSteering;
   } else {
     if (isReverse) {
       isReverse = false;
+      forwardCount = 0;
       return -currentSteering;
     }
   }

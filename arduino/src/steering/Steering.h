@@ -20,6 +20,11 @@ class Steering {
     LineSegment previouslyProcessedLine;
 
     bool isReverse;
+    int32_t forwardCount;
+    int32_t reverseCount;
+
+    int16_t steeringWhenStuck = 50;
+
 
 public:
     Steering(FrontWheels & frontWheels);
