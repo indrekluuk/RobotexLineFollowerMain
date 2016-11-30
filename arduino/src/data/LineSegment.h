@@ -17,8 +17,6 @@ struct LineSegment {
     int16_t x2;
     int16_t y2;
     bool isEndOfLine;
-    bool isSharpTurn;
-    bool sharpTurnDirection;
 
     LineSegment(
         int16_t range,
@@ -26,18 +24,14 @@ struct LineSegment {
         int16_t y1,
         int16_t x2,
         int16_t y2,
-        bool isEndOfLine,
-        bool isSharpTurn,
-        bool sharpTurnDirection
+        bool isEndOfLine
     ) :
         range(range),
         x1(x1),
         y1(y1),
         x2(x2),
         y2(y2),
-        isEndOfLine(isEndOfLine),
-        isSharpTurn(isSharpTurn),
-        sharpTurnDirection(sharpTurnDirection)
+        isEndOfLine(isEndOfLine)
     {}
 
     LineSegment() :
@@ -46,9 +40,7 @@ struct LineSegment {
         y1(0),
         x2(0),
         y2(0),
-        isEndOfLine(false),
-        isSharpTurn(false),
-        sharpTurnDirection(false)
+        isEndOfLine(false)
     {};
 
 };

@@ -35,21 +35,6 @@ bool Steering::steer(LineSegment & screenLine) {
 
 
 
-
-/*
-   if (line.isEndOfLine && !line.isSharpTurn &&
-      line.x1 > -15 && line.x1 < 15 && line.x2 > -15 && line.x2 < 15 ) {
-    if (line.y2 < 50) {
-      engine.reverse(power);
-    } else {
-      engine.drive(power);
-    }
-  } else {
-    engine.drive(power);
-  }
- */
-
-
 int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
   if (isOffLine(line)) {
     /*
@@ -66,23 +51,18 @@ int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
       }
     }
      */
+    int16_t reverseSteering = currentSteering;
     if (!isReverse) {
-      currentSteering = -currentSteering / 2;
+      reverseSteering = -reverseSteering / 2;
       isReverse = true;
     }
-    return currentSteering;
+    return reverseSteering;
   } else {
     if (isReverse) {
-      currentSteering = -currentSteering;
       isReverse = false;
+      return -currentSteering;
     }
   }
-
-  /*
-  if (line.isEndOfLine && line.y1 < 30 && line.y2 < 50 && line.isSharpTurn) {
-    return line.sharpTurnDirection ? fullSteeringRange : -fullSteeringRange;
-  }
-   */
 
   int16_t steeringDelta = getSteeringDelta(line, currentSteering);
   int16_t newSteering = currentSteering + steeringDelta;

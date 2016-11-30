@@ -10,7 +10,7 @@
 
 
 TEST(ScreenToWorldTest, testCenterLine) {
-  LineSegment onScreen(15, 0, 0, 0, 119);
+  LineSegment onScreen(15, 0, 0, 0, 119, true);
   ScreenToWorld screenToWorld(onScreen);
 
   ASSERT_EQ(0, screenToWorld.lineInWorld.x1);
@@ -21,7 +21,7 @@ TEST(ScreenToWorldTest, testCenterLine) {
 
 
 TEST(ScreenToWorldTest, testDiagonalLine) {
-  LineSegment onScreen(15, 14, 8, -12, 100);
+  LineSegment onScreen(15, 14, 8, -12, 100, true);
   ScreenToWorld screenToWorld(onScreen);
 
   ASSERT_EQ(17, screenToWorld.lineInWorld.x1);
