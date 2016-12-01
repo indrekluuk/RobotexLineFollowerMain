@@ -100,7 +100,7 @@ void lineSegmentReceived(LineSegment & line) {
    */
 
 #if DISABLE_CONTROLS == 0
-  int power = 85;
+  int power = 90;
   if (isReverse) {
     engine.reverse(power);
   } else {

@@ -44,7 +44,6 @@ bool Steering::steer(LineSegment & screenLine) {
 
 
 int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
-
   if (isOffLine(line)) {
     int16_t reverseSteering = currentSteering;
     if (!isReverse) {
@@ -65,6 +64,7 @@ int16_t Steering::getNewSteering(LineSegment & line, int16_t currentSteering) {
       return -currentSteering;
     }
   }
+
 
   int16_t steeringDelta = getSteeringDelta(line, currentSteering);
   int16_t newSteering = currentSteering + steeringDelta;
@@ -110,7 +110,7 @@ int16_t Steering::getSteeringRangeForY(int16_t screenY) {
 
 
 bool Steering::isOffLine(LineSegment & line) {
-  return line.y1 > 40;
+  return line.y1 > 25;
 }
 
 
