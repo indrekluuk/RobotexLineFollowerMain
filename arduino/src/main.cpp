@@ -13,7 +13,7 @@
 // 0 - not disabled
 // 1 - disable engine only
 // 2 - disable all
-#define DISABLE_CONTROLS 2
+#define DISABLE_CONTROLS 0
 
 
 
@@ -100,7 +100,7 @@ void lineSegmentReceived(LineSegment & line) {
    */
 
 #if DISABLE_CONTROLS == 0
-  int power = 90;
+  int power = 85;
   if (isReverse) {
     engine.reverse(power);
   } else {
