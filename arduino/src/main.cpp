@@ -76,9 +76,15 @@ void angleTest() {
 
 
 
+int defaultPower = 90;
+int8_t x1 = -1;
+int16_t x1_count;
+int16_t boostCount = 0;
+
 
 void lineSegmentReceived(LineSegment & line) {
   bool isReverse = steering.steer(line);
+
 
   /*
   Serial.print("x1=");
@@ -100,7 +106,26 @@ void lineSegmentReceived(LineSegment & line) {
    */
 
 #if DISABLE_CONTROLS == 0
-  int power = 90;
+
+
+  int power = defaultPower;
+  if (x1 == line.x1) {
+    x1_count ++;
+  } else {
+    x1_count = 0;
+    x1 = line.x1;
+  }
+
+  if (x1_count > 30) { // 3 seconds
+    power = 255;
+    x1_count = 0;
+    boostCount++;
+    if (boostCount > 3) {
+      defaultPower += 5;
+      boostCount = 0;
+    }
+  }
+
   if (isReverse) {
     engine.reverse(power);
   } else {
